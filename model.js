@@ -34,7 +34,7 @@ const save = () => {
         });
 };
 
-exports.count = () => {quizzes.length};
+exports.count = () => quizzes.length;
 
 exports.add = (question, answer) => {
 
