@@ -3,6 +3,22 @@ const fs = require("fs");
 
 const DB_FILENAME= "quizzes.json";
 
+let quizzes = [
+	{ question: "Capital de Italia",
+	  answer: "Roma"
+	},
+	{ question: "Capital de Francia",
+	  answer: "París"
+	},
+	{ question: "Capital de España",
+	  answer: "Madrid"
+	},
+	{ question: "Capital de Portugal",
+	  answer: "Lisboa"
+	}
+
+];
+
 
 
 
