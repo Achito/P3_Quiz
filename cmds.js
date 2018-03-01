@@ -99,7 +99,6 @@ exports.testCmd = (rl, id) => {
 exports.playCmd = rl => {
     let score = 0;
     let toBeResolved = [];
-    let longitud = model.count();
     for(let i=0; i < model.count(); i++){
         toBeResolved[i]=i;
     }
@@ -114,13 +113,14 @@ exports.playCmd = rl => {
         else{
             let idAux= Math.floor(Math.random()*toBeResolved.length);
             let randomQuiz = toBeResolved[idAux];
+            toBeResolved.splice(idAux,1);
             
             const quiz= model.getByIndex(randomQuiz);
             
             rl.question(colorize(`${quiz.question}? `, 'red'), answer => {
                 
                 if (answer.toLowerCase().trim() === quiz.answer.toLowerCase().trim()){
-                    toBeResolved.splice(idAux,1);
+                    
                     score++;
                     log(`CORRECTO - Lleva ${score} aciertos.`,'green');
                     playOne();}
