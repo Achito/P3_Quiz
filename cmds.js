@@ -122,7 +122,7 @@ exports.playCmd = rl => {
                 if (answer.toLowerCase().trim() === quiz.answer.toLowerCase().trim()){
                     toBeResolved.splice(idAux,1);
                     score++;
-                    log(`CORRECTO - Lleva ${score} aciertos`,'green');
+                    log(`CORRECTO - Lleva ${score} aciertos.`,'green');
                     playOne();}
                     else{
                         log(`INCORRECTO`);
@@ -187,8 +187,8 @@ exports.editCmd = (rl, id) => {
 
 exports.creditsCmd = rl => {
 
-    log('Autores de la practica');
-    log('Jorge Garcia Perez');
+    log('Autores de la practica:');
+    log('Jorge Garcia Perez','green');
     rl.prompt();
 
 };
