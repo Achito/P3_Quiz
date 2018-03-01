@@ -125,12 +125,12 @@ exports.playCmd = rl => {
                     log(`CORRECTO - Lleva ${score} aciertos.`,'green');
                     playOne();}
                     else{
-                        log(`INCORRECTO`);
+                        log(`INCORRECTO`, 'red');
                         log(`Fin del juego. Aciertos: ${score}`);
                         biglog(`${score}`,'magenta');
-                        
+                        rl.prompt();
                          }
-                         rl.prompt();
+                         
                 });
                     
  
