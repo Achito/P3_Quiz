@@ -97,49 +97,50 @@ exports.testCmd = (rl, id) => {
 };
 
 exports.playCmd = rl => {
-    let score = 0;
-    let toBeResolved = [];
-    for(let i=0; i < model.count(); i++){
-        toBeResolved[i]=i;
-    }
-    
-    const playOne = ()=>{
-        if(toBeResolved.length === 0){
-            log('No hay nada más que preguntar.');
-            log(`Fin del juego. Aciertos: ${score}`);
-            biglog(`${score}`, "green");
-            rl.prompt();
-        }
-        else{
-            let idAux= Math.floor(Math.random()*toBeResolved.length);
-            let randomQuiz = toBeResolved[idAux];
-            toBeResolved.splice(idAux,1);
-            
-            const quiz= model.getByIndex(randomQuiz);
-            
-            rl.question(colorize(`${quiz.question}? `, 'red'), answer => {
-                
-                if (answer.toLowerCase().trim() === quiz.answer.toLowerCase().trim()){
-                    
-                    score++;
-                    log(`CORRECTO - Lleva ${score} aciertos.`,'green');
-                    playOne();}
-                    else{
-                        log(`INCORRECTO`);
-                        log(`Fin del juego. Aciertos: ${score}`);
-                        biglog(`${score}`,'magenta');
-                        
-                         }
-                         rl.prompt();
-                });
-                    
- 
-            }
-             
-        
-    }
-    
-   playOne();
+	
+	let score = 0;
+
+	let toBeResolved = [];
+
+	model.getAll().forEach((quiz, id) =>{
+		toBeResolved.push(id);
+	});
+
+	const playOne = () => {
+	if (toBeResolved.length===0){
+		log('No hay nada más que preguntar.');
+		log(`Fin del juego. Aciertos: ${score}`);
+		biglog(`${score}`,"green");
+		rl.prompt();
+	}else{
+
+		let randomQuiz =Math.floor(Math.random()*toBeResolved.length)
+
+		let idAux = toBeResolved[randomQuiz];
+		
+
+		const quiz = model.getByIndex(idAux);
+
+		rl.question(colorize(`${quiz.question}? `, 'red'),answer => {
+
+
+	        if(answer.toLowerCase().trim()===quiz.answer.toLowerCase().trim()){
+		toBeResolved.splice(randomQuiz,1);
+		score++;
+		log(`CORRECTO - Lleva ${score}a ciertos.`,'green');
+		playOne();
+
+		} else{
+		log('INCORRECTO.');
+		log(`Fin del juego. Aciertos: ${score}`);
+		biglog(`${score}`,'magenta');}
+		rl.prompt();
+		});
+	}
+		
+	}
+
+	playOne();
 
 };
 
