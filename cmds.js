@@ -117,7 +117,7 @@ exports.playCmd = rl => {
             
             const quiz= model.getByIndex(randomQuiz);
             
-            rl.question(colorize(`${quiz.question}: `, 'red'), answer => {
+            rl.question(colorize(`${quiz.question}? `, 'red'), answer => {
                 
                 if (answer.toLowerCase().trim() === quiz.answer.toLowerCase().trim()){
                     toBeResolved.splice(idAux,1);
