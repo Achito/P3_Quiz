@@ -124,7 +124,7 @@ exports.playCmd = rl => {
                     playOne();}
                     else{
                         log(`INCORRECTO -  ${score} aciertos`,'red');
-                        log(`El juego ha terminado`,'blue');
+                        log(`Fin del juego`,'blue');
                         biglog(`${score}`,'magenta');
                         
                          }
